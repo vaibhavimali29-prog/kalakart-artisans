@@ -14,7 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          artisan_name: string | null
+          craft_category: string | null
+          created_at: string
+          district: string | null
+          email: string | null
+          experience_years: number | null
+          full_name: string
+          id: string
+          mobile: string
+          preferred_language: string
+          profile_complete: boolean
+          provider_reference_id: string | null
+          state: string | null
+          updated_at: string
+          verification_method: string | null
+          verification_status: Database["public"]["Enums"]["verification_status"]
+          verified_at: string | null
+          village: string | null
+        }
+        Insert: {
+          artisan_name?: string | null
+          craft_category?: string | null
+          created_at?: string
+          district?: string | null
+          email?: string | null
+          experience_years?: number | null
+          full_name?: string
+          id: string
+          mobile?: string
+          preferred_language?: string
+          profile_complete?: boolean
+          provider_reference_id?: string | null
+          state?: string | null
+          updated_at?: string
+          verification_method?: string | null
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+          verified_at?: string | null
+          village?: string | null
+        }
+        Update: {
+          artisan_name?: string | null
+          craft_category?: string | null
+          created_at?: string
+          district?: string | null
+          email?: string | null
+          experience_years?: number | null
+          full_name?: string
+          id?: string
+          mobile?: string
+          preferred_language?: string
+          profile_complete?: boolean
+          provider_reference_id?: string | null
+          state?: string | null
+          updated_at?: string
+          verification_method?: string | null
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+          verified_at?: string | null
+          village?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +85,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      verification_status: "pending" | "verified" | "failed" | "skipped"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +212,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      verification_status: ["pending", "verified", "failed", "skipped"],
+    },
   },
 } as const
