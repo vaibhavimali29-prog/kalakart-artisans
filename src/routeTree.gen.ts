@@ -13,13 +13,16 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AuthenticatedAddProductRouteImport } from './routes/_authenticated/add-product'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedInquiryRouteImport } from './routes/_authenticated/inquiry'
 import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedVerifyRouteImport } from './routes/_authenticated/verify'
 import { Route as AuthenticatedVoiceRouteImport } from './routes/_authenticated/voice'
+import { Route as AuthenticatedWelcomeRouteImport } from './routes/_authenticated/welcome'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -38,6 +41,11 @@ const LoginRoute = LoginRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAddProductRoute = AuthenticatedAddProductRouteImport.update({
@@ -70,9 +78,19 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedVerifyRoute = AuthenticatedVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedVoiceRoute = AuthenticatedVoiceRouteImport.update({
   id: '/voice',
   path: '/voice',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWelcomeRoute = AuthenticatedWelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
@@ -80,25 +98,31 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/register': typeof RegisterRoute
   '/add-product': typeof AuthenticatedAddProductRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inquiry': typeof AuthenticatedInquiryRoute
   '/orders': typeof AuthenticatedOrdersRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/verify': typeof AuthenticatedVerifyRoute
   '/voice': typeof AuthenticatedVoiceRoute
+  '/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/register': typeof RegisterRoute
   '/add-product': typeof AuthenticatedAddProductRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inquiry': typeof AuthenticatedInquiryRoute
   '/orders': typeof AuthenticatedOrdersRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/verify': typeof AuthenticatedVerifyRoute
   '/voice': typeof AuthenticatedVoiceRoute
+  '/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,13 +130,16 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/register': typeof RegisterRoute
   '/_authenticated/add-product': typeof AuthenticatedAddProductRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/inquiry': typeof AuthenticatedInquiryRoute
   '/_authenticated/orders': typeof AuthenticatedOrdersRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/verify': typeof AuthenticatedVerifyRoute
   '/_authenticated/voice': typeof AuthenticatedVoiceRoute
+  '/_authenticated/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,38 +147,47 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/onboarding'
+    | '/register'
     | '/add-product'
     | '/chat'
     | '/dashboard'
     | '/inquiry'
     | '/orders'
     | '/profile'
+    | '/verify'
     | '/voice'
+    | '/welcome'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
     | '/onboarding'
+    | '/register'
     | '/add-product'
     | '/chat'
     | '/dashboard'
     | '/inquiry'
     | '/orders'
     | '/profile'
+    | '/verify'
     | '/voice'
+    | '/welcome'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/login'
     | '/onboarding'
+    | '/register'
     | '/_authenticated/add-product'
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
     | '/_authenticated/inquiry'
     | '/_authenticated/orders'
     | '/_authenticated/profile'
+    | '/_authenticated/verify'
     | '/_authenticated/voice'
+    | '/_authenticated/welcome'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -159,6 +195,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
+  RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -189,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/add-product': {
@@ -233,11 +277,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/verify': {
+      id: '/_authenticated/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof AuthenticatedVerifyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/voice': {
       id: '/_authenticated/voice'
       path: '/voice'
       fullPath: '/voice'
       preLoaderRoute: typeof AuthenticatedVoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/welcome': {
+      id: '/_authenticated/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof AuthenticatedWelcomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
@@ -250,7 +308,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInquiryRoute: typeof AuthenticatedInquiryRoute
   AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedVerifyRoute: typeof AuthenticatedVerifyRoute
   AuthenticatedVoiceRoute: typeof AuthenticatedVoiceRoute
+  AuthenticatedWelcomeRoute: typeof AuthenticatedWelcomeRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -260,7 +320,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInquiryRoute: AuthenticatedInquiryRoute,
   AuthenticatedOrdersRoute: AuthenticatedOrdersRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedVerifyRoute: AuthenticatedVerifyRoute,
   AuthenticatedVoiceRoute: AuthenticatedVoiceRoute,
+  AuthenticatedWelcomeRoute: AuthenticatedWelcomeRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -271,6 +333,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
+  RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
