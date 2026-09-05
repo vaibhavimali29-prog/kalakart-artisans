@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { inquiries } from "@/lib/kalakart-data";
 
-export const Route = createFileRoute("/inquiry")({
+export const Route = createFileRoute("/_authenticated/inquiry")({
   head: () => ({
     meta: [
       { title: "Buyer Inquiries — KalaKart" },

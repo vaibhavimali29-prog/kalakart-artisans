@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Mic, Send, Sparkles } from "lucide-react";
 import { Phone, ScreenHeader } from "@/components/kk/shell";
 
-export const Route = createFileRoute("/chat")({
+export const Route = createFileRoute("/_authenticated/chat")({
   head: () => ({
     meta: [
       { title: "KalaKart AI — Your Digital Business Assistant" },

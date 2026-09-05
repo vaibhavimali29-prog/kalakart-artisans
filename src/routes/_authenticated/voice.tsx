@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { inr } from "@/lib/kalakart-data";
 
-export const Route = createFileRoute("/voice")({
+export const Route = createFileRoute("/_authenticated/voice")({
   head: () => ({
     meta: [
       { title: "Voice Command — Speak Your Craft | KalaKart" },
@@ -124,7 +124,7 @@ function VoiceScreen() {
                 type="button"
                 onClick={() => {
                   toast.success("Added to your catalog");
-                  navigate({ to: "/" });
+                  navigate({ to: "/dashboard" });
                 }}
                 className="tap flex-[1.4] rounded-2xl bg-gradient-warm py-3.5 text-xs font-semibold text-primary-foreground shadow-card"
               >

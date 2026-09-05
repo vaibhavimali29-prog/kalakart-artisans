@@ -14,7 +14,7 @@ import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { images, inr } from "@/lib/kalakart-data";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/add-product")({
+export const Route = createFileRoute("/_authenticated/add-product")({
   head: () => ({
     meta: [
       { title: "Add Product — KalaKart AI Cataloging" },
@@ -95,7 +95,7 @@ function AddProduct() {
           </p>
           <button
             type="button"
-            onClick={() => navigate({ to: "/" })}
+            onClick={() => navigate({ to: "/dashboard" })}
             className="tap mt-2 w-full rounded-2xl bg-gradient-warm py-4 text-sm font-semibold text-primary-foreground shadow-card"
           >
             Back to My Products

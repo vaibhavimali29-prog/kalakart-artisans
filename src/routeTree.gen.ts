@@ -10,32 +10,32 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AddProductRouteImport } from './routes/add-product'
-import { Route as ChatRouteImport } from './routes/chat'
-import { Route as InquiryRouteImport } from './routes/inquiry'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as OrdersRouteImport } from './routes/orders'
-import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as VoiceRouteImport } from './routes/voice'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as AuthenticatedAddProductRouteImport } from './routes/_authenticated/add-product'
+import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedInquiryRouteImport } from './routes/_authenticated/inquiry'
+import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedVerifyRouteImport } from './routes/_authenticated/verify'
+import { Route as AuthenticatedVoiceRouteImport } from './routes/_authenticated/voice'
+import { Route as AuthenticatedWelcomeRouteImport } from './routes/_authenticated/welcome'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AddProductRoute = AddProductRouteImport.update({
-  id: '/add-product',
-  path: '/add-product',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InquiryRoute = InquiryRouteImport.update({
-  id: '/inquiry',
-  path: '/inquiry',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -43,95 +43,159 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OrdersRoute = OrdersRouteImport.update({
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAddProductRoute = AuthenticatedAddProductRouteImport.update({
+  id: '/add-product',
+  path: '/add-product',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInquiryRoute = AuthenticatedInquiryRouteImport.update({
+  id: '/inquiry',
+  path: '/inquiry',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOrdersRoute = AuthenticatedOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const ProfileRoute = ProfileRouteImport.update({
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const VoiceRoute = VoiceRouteImport.update({
+const AuthenticatedVerifyRoute = AuthenticatedVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVoiceRoute = AuthenticatedVoiceRouteImport.update({
   id: '/voice',
   path: '/voice',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWelcomeRoute = AuthenticatedWelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/add-product': typeof AddProductRoute
-  '/chat': typeof ChatRoute
-  '/inquiry': typeof InquiryRoute
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/orders': typeof OrdersRoute
-  '/profile': typeof ProfileRoute
-  '/voice': typeof VoiceRoute
+  '/register': typeof RegisterRoute
+  '/add-product': typeof AuthenticatedAddProductRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/inquiry': typeof AuthenticatedInquiryRoute
+  '/orders': typeof AuthenticatedOrdersRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/verify': typeof AuthenticatedVerifyRoute
+  '/voice': typeof AuthenticatedVoiceRoute
+  '/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/add-product': typeof AddProductRoute
-  '/chat': typeof ChatRoute
-  '/inquiry': typeof InquiryRoute
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/orders': typeof OrdersRoute
-  '/profile': typeof ProfileRoute
-  '/voice': typeof VoiceRoute
+  '/register': typeof RegisterRoute
+  '/add-product': typeof AuthenticatedAddProductRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/inquiry': typeof AuthenticatedInquiryRoute
+  '/orders': typeof AuthenticatedOrdersRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/verify': typeof AuthenticatedVerifyRoute
+  '/voice': typeof AuthenticatedVoiceRoute
+  '/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/add-product': typeof AddProductRoute
-  '/chat': typeof ChatRoute
-  '/inquiry': typeof InquiryRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/orders': typeof OrdersRoute
-  '/profile': typeof ProfileRoute
-  '/voice': typeof VoiceRoute
+  '/register': typeof RegisterRoute
+  '/_authenticated/add-product': typeof AuthenticatedAddProductRoute
+  '/_authenticated/chat': typeof AuthenticatedChatRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/inquiry': typeof AuthenticatedInquiryRoute
+  '/_authenticated/orders': typeof AuthenticatedOrdersRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/verify': typeof AuthenticatedVerifyRoute
+  '/_authenticated/voice': typeof AuthenticatedVoiceRoute
+  '/_authenticated/welcome': typeof AuthenticatedWelcomeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/onboarding'
+    | '/register'
     | '/add-product'
     | '/chat'
+    | '/dashboard'
     | '/inquiry'
-    | '/onboarding'
     | '/orders'
     | '/profile'
+    | '/verify'
     | '/voice'
+    | '/welcome'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
+    | '/onboarding'
+    | '/register'
     | '/add-product'
     | '/chat'
+    | '/dashboard'
     | '/inquiry'
-    | '/onboarding'
     | '/orders'
     | '/profile'
+    | '/verify'
     | '/voice'
+    | '/welcome'
   id:
     | '__root__'
     | '/'
-    | '/add-product'
-    | '/chat'
-    | '/inquiry'
+    | '/_authenticated'
+    | '/login'
     | '/onboarding'
-    | '/orders'
-    | '/profile'
-    | '/voice'
+    | '/register'
+    | '/_authenticated/add-product'
+    | '/_authenticated/chat'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/inquiry'
+    | '/_authenticated/orders'
+    | '/_authenticated/profile'
+    | '/_authenticated/verify'
+    | '/_authenticated/voice'
+    | '/_authenticated/welcome'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AddProductRoute: typeof AddProductRoute
-  ChatRoute: typeof ChatRoute
-  InquiryRoute: typeof InquiryRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
-  OrdersRoute: typeof OrdersRoute
-  ProfileRoute: typeof ProfileRoute
-  VoiceRoute: typeof VoiceRoute
+  RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -143,25 +207,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/add-product': {
-      id: '/add-product'
-      path: '/add-product'
-      fullPath: '/add-product'
-      preLoaderRoute: typeof AddProductRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chat': {
-      id: '/chat'
-      path: '/chat'
-      fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/inquiry': {
-      id: '/inquiry'
-      path: '/inquiry'
-      fullPath: '/inquiry'
-      preLoaderRoute: typeof InquiryRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -171,39 +228,112 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/orders': {
-      id: '/orders'
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/add-product': {
+      id: '/_authenticated/add-product'
+      path: '/add-product'
+      fullPath: '/add-product'
+      preLoaderRoute: typeof AuthenticatedAddProductRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/chat': {
+      id: '/_authenticated/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof AuthenticatedChatRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/inquiry': {
+      id: '/_authenticated/inquiry'
+      path: '/inquiry'
+      fullPath: '/inquiry'
+      preLoaderRoute: typeof AuthenticatedInquiryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/orders': {
+      id: '/_authenticated/orders'
       path: '/orders'
       fullPath: '/orders'
-      preLoaderRoute: typeof OrdersRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedOrdersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/profile': {
-      id: '/profile'
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/voice': {
-      id: '/voice'
+    '/_authenticated/verify': {
+      id: '/_authenticated/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof AuthenticatedVerifyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/voice': {
+      id: '/_authenticated/voice'
       path: '/voice'
       fullPath: '/voice'
-      preLoaderRoute: typeof VoiceRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedVoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/welcome': {
+      id: '/_authenticated/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof AuthenticatedWelcomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAddProductRoute: typeof AuthenticatedAddProductRoute
+  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedInquiryRoute: typeof AuthenticatedInquiryRoute
+  AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedVerifyRoute: typeof AuthenticatedVerifyRoute
+  AuthenticatedVoiceRoute: typeof AuthenticatedVoiceRoute
+  AuthenticatedWelcomeRoute: typeof AuthenticatedWelcomeRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAddProductRoute: AuthenticatedAddProductRoute,
+  AuthenticatedChatRoute: AuthenticatedChatRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedInquiryRoute: AuthenticatedInquiryRoute,
+  AuthenticatedOrdersRoute: AuthenticatedOrdersRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedVerifyRoute: AuthenticatedVerifyRoute,
+  AuthenticatedVoiceRoute: AuthenticatedVoiceRoute,
+  AuthenticatedWelcomeRoute: AuthenticatedWelcomeRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AddProductRoute: AddProductRoute,
-  ChatRoute: ChatRoute,
-  InquiryRoute: InquiryRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
-  OrdersRoute: OrdersRoute,
-  ProfileRoute: ProfileRoute,
-  VoiceRoute: VoiceRoute,
+  RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

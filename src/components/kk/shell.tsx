@@ -29,7 +29,7 @@ export function Phone({
 }
 
 const tabs = [
-  { to: "/", label: "Products", icon: ShoppingBag },
+  { to: "/dashboard", label: "Products", icon: ShoppingBag },
   { to: "/orders", label: "Your Orders", icon: Package },
   { to: "/inquiry", label: "Inquiry", icon: MessageCircle },
 ] as const;
@@ -83,7 +83,7 @@ export function ScreenHeader({
         <button
           type="button"
           aria-label="Go back"
-          onClick={() => navigate({ to: "/" })}
+          onClick={() => navigate({ to: "/dashboard" })}
           className="tap grid size-10 shrink-0 place-items-center rounded-2xl bg-secondary text-secondary-foreground"
         >
           <ChevronLeft className="size-5" />

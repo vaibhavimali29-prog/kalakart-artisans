@@ -15,7 +15,7 @@ import { Phone, ScreenHeader, SectionTitle } from "@/components/kk/shell";
 import { languages } from "@/lib/kalakart-data";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
       { title: "Profile & Settings — KalaKart" },
