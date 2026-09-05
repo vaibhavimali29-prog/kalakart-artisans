@@ -9,6 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AuthenticatedAddProductRouteImport } from './routes/_authenticated/add-product'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
@@ -18,48 +21,64 @@ import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedVoiceRouteImport } from './routes/_authenticated/voice'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAddProductRoute = AuthenticatedAddProductRouteImport.update({
-  id: '/_authenticated/add-product',
+  id: '/add-product',
   path: '/add-product',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
-  id: '/_authenticated/chat',
+  id: '/chat',
   path: '/chat',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/_authenticated/dashboard',
+  id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedInquiryRoute = AuthenticatedInquiryRouteImport.update({
-  id: '/_authenticated/inquiry',
+  id: '/inquiry',
   path: '/inquiry',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedOrdersRoute = AuthenticatedOrdersRouteImport.update({
-  id: '/_authenticated/orders',
+  id: '/orders',
   path: '/orders',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
-  id: '/_authenticated/profile',
+  id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedVoiceRoute = AuthenticatedVoiceRouteImport.update({
-  id: '/_authenticated/voice',
+  id: '/voice',
   path: '/voice',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/add-product': typeof AuthenticatedAddProductRoute
   '/chat': typeof AuthenticatedChatRoute
@@ -70,6 +89,8 @@ export interface FileRoutesByFullPath {
   '/voice': typeof AuthenticatedVoiceRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/add-product': typeof AuthenticatedAddProductRoute
   '/chat': typeof AuthenticatedChatRoute
@@ -81,6 +102,9 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/_authenticated/add-product': typeof AuthenticatedAddProductRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
@@ -93,6 +117,8 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
+    | '/login'
     | '/onboarding'
     | '/add-product'
     | '/chat'
@@ -103,6 +129,8 @@ export interface FileRouteTypes {
     | '/voice'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
+    | '/login'
     | '/onboarding'
     | '/add-product'
     | '/chat'
@@ -113,6 +141,9 @@ export interface FileRouteTypes {
     | '/voice'
   id:
     | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
     | '/onboarding'
     | '/_authenticated/add-product'
     | '/_authenticated/chat'
@@ -124,18 +155,35 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
-  AuthenticatedAddProductRoute: typeof AuthenticatedAddProductRoute
-  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedInquiryRoute: typeof AuthenticatedInquiryRoute
-  AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedVoiceRoute: typeof AuthenticatedVoiceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -148,55 +196,64 @@ declare module '@tanstack/react-router' {
       path: '/add-product'
       fullPath: '/add-product'
       preLoaderRoute: typeof AuthenticatedAddProductRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/chat': {
       id: '/_authenticated/chat'
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof AuthenticatedChatRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/inquiry': {
       id: '/_authenticated/inquiry'
       path: '/inquiry'
       fullPath: '/inquiry'
       preLoaderRoute: typeof AuthenticatedInquiryRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/orders': {
       id: '/_authenticated/orders'
       path: '/orders'
       fullPath: '/orders'
       preLoaderRoute: typeof AuthenticatedOrdersRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/voice': {
       id: '/_authenticated/voice'
       path: '/voice'
       fullPath: '/voice'
       preLoaderRoute: typeof AuthenticatedVoiceRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  OnboardingRoute: OnboardingRoute,
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAddProductRoute: typeof AuthenticatedAddProductRoute
+  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedInquiryRoute: typeof AuthenticatedInquiryRoute
+  AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedVoiceRoute: typeof AuthenticatedVoiceRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAddProductRoute: AuthenticatedAddProductRoute,
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
@@ -204,6 +261,16 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedOrdersRoute: AuthenticatedOrdersRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedVoiceRoute: AuthenticatedVoiceRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
