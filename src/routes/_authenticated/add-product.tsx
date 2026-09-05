@@ -95,7 +95,7 @@ function AddProduct() {
           </p>
           <button
             type="button"
-            onClick={() => navigate({ to: "/" })}
+            onClick={() => navigate({ to: "/dashboard" })}
             className="tap mt-2 w-full rounded-2xl bg-gradient-warm py-4 text-sm font-semibold text-primary-foreground shadow-card"
           >
             Back to My Products
