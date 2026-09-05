@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { inr } from "@/lib/kalakart-data";
 
-export const Route = createFileRoute("/voice")({
+export const Route = createFileRoute("/_authenticated/voice")({
   head: () => ({
     meta: [
       { title: "Voice Command — Speak Your Craft | KalaKart" },

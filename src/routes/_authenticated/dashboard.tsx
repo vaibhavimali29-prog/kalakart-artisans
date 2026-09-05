@@ -15,7 +15,7 @@ import { inr, products } from "@/lib/kalakart-data";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
       { title: "KalaKart — Empowering Artisans, Connecting Traditions" },

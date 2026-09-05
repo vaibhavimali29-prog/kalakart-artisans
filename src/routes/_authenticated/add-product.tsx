@@ -14,7 +14,7 @@ import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { images, inr } from "@/lib/kalakart-data";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/add-product")({
+export const Route = createFileRoute("/_authenticated/add-product")({
   head: () => ({
     meta: [
       { title: "Add Product — KalaKart AI Cataloging" },

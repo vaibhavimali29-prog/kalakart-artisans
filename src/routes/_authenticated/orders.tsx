@@ -5,7 +5,7 @@ import { Phone, ScreenHeader } from "@/components/kk/shell";
 import { inr, orders, statusTone } from "@/lib/kalakart-data";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/orders")({
+export const Route = createFileRoute("/_authenticated/orders")({
   head: () => ({
     meta: [
       { title: "Your Orders — KalaKart" },
